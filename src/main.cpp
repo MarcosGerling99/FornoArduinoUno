@@ -1,3 +1,4 @@
+// Autor: Marcos Gerling.
 #include <LiquidCrystal.h>
 #include <EEPROM.h>
 #include <Wire.h>
