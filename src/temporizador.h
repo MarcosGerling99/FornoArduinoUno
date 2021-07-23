@@ -49,8 +49,8 @@ void temporizador()
         Serial.print("SetpointTempo");
         Serial.println(TempoAtual);
 
-        Serial.print("Bortao");
-        Serial.println(digitalRead(BotaoLiga));
+        Serial.print("SetPointTemperatura");
+        Serial.println(SetPointTemperatura);
 
         tempoanterior = tempoatual;
     }

@@ -1,88 +1,79 @@
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 
-
 // Make custom characters:
 byte Heart[] = {
-  B00000,
-  B01010,
-  B11111,
-  B11111,
-  B01110,
-  B00100,
-  B00000,
-  B00000
-};
+    B00000,
+    B01010,
+    B11111,
+    B11111,
+    B01110,
+    B00100,
+    B00000,
+    B00000};
 byte Bell[] = {
-  B00100,
-  B01110,
-  B01110,
-  B01110,
-  B11111,
-  B00000,
-  B00100,
-  B00000
-};
+    B00100,
+    B01110,
+    B01110,
+    B01110,
+    B11111,
+    B00000,
+    B00100,
+    B00000};
 byte Alien[] = {
-  B11111,
-  B10101,
-  B11111,
-  B11111,
-  B01110,
-  B01010,
-  B11011,
-  B00000
-};
+    B11111,
+    B10101,
+    B11111,
+    B11111,
+    B01110,
+    B01010,
+    B11011,
+    B00000};
 byte Check[] = {
-  B00000,
-  B00001,
-  B00011,
-  B10110,
-  B11100,
-  B01000,
-  B00000,
-  B00000
-};
+    B00000,
+    B00001,
+    B00011,
+    B10110,
+    B11100,
+    B01000,
+    B00000,
+    B00000};
 byte Speaker[] = {
-  B00001,
-  B00011,
-  B01111,
-  B01111,
-  B01111,
-  B00011,
-  B00001,
-  B00000
-};
+    B00001,
+    B00011,
+    B01111,
+    B01111,
+    B01111,
+    B00011,
+    B00001,
+    B00000};
 byte Sound[] = {
-  B00001,
-  B00011,
-  B00101,
-  B01001,
-  B01001,
-  B01011,
-  B11011,
-  B11000
-};
+    B00001,
+    B00011,
+    B00101,
+    B01001,
+    B01001,
+    B01011,
+    B11011,
+    B11000};
 byte Skull[] = {
-  B00000,
-  B01110,
-  B10101,
-  B11011,
-  B01110,
-  B01110,
-  B00000,
-  B00000
-};
+    B00000,
+    B01110,
+    B10101,
+    B11011,
+    B01110,
+    B01110,
+    B00000,
+    B00000};
 byte Lock[] = {
-  B01110,
-  B10001,
-  B10001,
-  B11111,
-  B11011,
-  B11011,
-  B11111,
-  B00000
-};
+    B01110,
+    B10001,
+    B10001,
+    B11111,
+    B11011,
+    B11011,
+    B11111,
+    B00000};
 
 //defining House Icon
 byte housechar1[8] = {
@@ -286,10 +277,10 @@ void telaprincipal()
   // Menu principal mostra todos os dados
   //lcd.clear(); // Limpa o LCD
   IconeTemperatura();
-  lcd.setCursor(3, 0);
-  lcd.print("Temp(C)");
-  lcd.setCursor(3, 1);
-  lcd.print("Minutos");
+  lcd.setCursor(13, 0);
+  lcd.print("(C)");
+  lcd.setCursor(13, 1);
+  lcd.print("min");
 }
 
 void ChamaSetpointTemperatura()
@@ -343,8 +334,45 @@ void telaSetPointTempo()
 
 void DadosTelaPrincipal()
 {
-  lcd.setCursor(11, 0);
+  lcd.setCursor(3, 0);
   lcd.print(Temperatura);
-  lcd.setCursor(11, 1);
+  lcd.setCursor(3, 1);
   lcd.print(TempoAtual);
+  if (TempoAtual < 100)
+  {
+    lcd.setCursor(5, 1);
+    lcd.print(' ');
+  }
+  if (TempoAtual < 10)
+  {
+    lcd.setCursor(4, 1);
+    lcd.print(' ');
+  }
+}
+void AjustesPot()
+{
+  lcd.setCursor(9, 0);
+  lcd.print(SetPointTemperatura);
+  if (SetPointTemperatura < 100)
+  {
+    lcd.setCursor(11, 0);
+    lcd.print(' ');
+  }
+  if (SetPointTemperatura < 10)
+  {
+    lcd.setCursor(10, 0);
+    lcd.print(' ');
+  }
+  lcd.setCursor(9, 1);
+  lcd.print(SetPointTempo);
+  if (SetPointTempo < 100)
+  {
+    lcd.setCursor(11, 1);
+  }
+  lcd.print(' ');
+  if (SetPointTempo < 10)
+  {
+    lcd.setCursor(10, 1);
+    lcd.print(' ');
+  }
 }

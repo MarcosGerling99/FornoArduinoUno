@@ -32,6 +32,7 @@ byte botao = 0;
 bool t = false;
 bool ligabip = false;
 bool Liga = false;
+bool MeoriaBotao = false;
 // define some values used by the panel and buttons
 int lcd_key = 0;
 int adc_key_in = 0;
@@ -153,21 +154,40 @@ void setPoint(char tecla)
 
 void loop()
 {
-  // ligabip = true;
+  // Set point temperatura
+  int valTemp = analogRead(PotenciometroTemp);
+  SetPointTemperatura = map(valTemp, 0, 1023, 0, 320);
+
+  // Set point tempo
+  int valMin = analogRead(PotenciometroTimer);
+  SetPointTempo = map(valMin, 0, 1023, 0, 120);
+
+  if (valTemp != SetPointTemperatura || valMin != SetPointTempo)
+  {
+    AjustesPot();
+  }
 
   if (digitalRead(BotaoLiga) == HIGH)
   {
-    if (Liga == false)
+    if (!MeoriaBotao)
     {
-      Liga = true;
-      TempoAtual = SetPointTempo;
-      delay(300);
+      if (Liga == false)
+      {
+        Liga = true;
+        TempoAtual = SetPointTempo;
+        delay(500);
+      }
+      else
+      {
+        Liga = false;
+        delay(500);
+      }
+      MeoriaBotao = true;
     }
-    else
-    {
-      Liga = false;
-      delay(300);
-    }
+  }
+  else
+  {
+    MeoriaBotao = false;
   }
 
   if (Liga)
