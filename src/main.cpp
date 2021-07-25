@@ -25,6 +25,7 @@ unsigned int SetPointTempo = 10;
 unsigned int tela = 0;
 unsigned int SetPointTempoParametros = 20;
 unsigned int tempoParametros = 0;
+unsigned Histerese = 1;
 unsigned long tempoanterior = 0;
 byte contabuzer = 0;
 byte contateladados = 0;
@@ -33,6 +34,7 @@ bool t = false;
 bool ligabip = false;
 bool Liga = false;
 bool MeoriaBotao = false;
+bool TemperaturaBaixa = false;
 // define some values used by the panel and buttons
 int lcd_key = 0;
 int adc_key_in = 0;
@@ -58,6 +60,7 @@ int adc_key_in = 0;
 #include <temporizador.h>
 #include <eprom.h>
 #include <readLcdButtons.h>
+#include <controleTemperatura.h>
 
 void setup()
 {
@@ -156,16 +159,21 @@ void loop()
 {
   // Set point temperatura
   int valTemp = analogRead(PotenciometroTemp);
-  SetPointTemperatura = map(valTemp, 0, 1023, 0, 320);
+  int te = map(valTemp, 0, 1023, 0, 32000);
+  unsigned TemperaturaEngenharia = (te / 100);
 
   // Set point tempo
   int valMin = analogRead(PotenciometroTimer);
-  SetPointTempo = map(valMin, 0, 1023, 0, 120);
+  int ti = map(valMin, 0, 1023, 0, 12000);
+  unsigned TimerEngenharia = (ti / 100);
 
-  if (valTemp != SetPointTemperatura || valMin != SetPointTempo)
+  unsigned filtro = 1;
+  if ((TemperaturaEngenharia < SetPointTemperatura - filtro) || (TemperaturaEngenharia > SetPointTemperatura + filtro) || (TimerEngenharia < SetPointTempo + filtro) || (TimerEngenharia > SetPointTempo - filtro))
   {
     AjustesPot();
   }
+  SetPointTemperatura = TemperaturaEngenharia;
+  SetPointTempo = TimerEngenharia;
 
   if (digitalRead(BotaoLiga) == HIGH)
   {
@@ -190,7 +198,7 @@ void loop()
     MeoriaBotao = false;
   }
 
-  if (Liga)
+  if (Liga && TemperaturaBaixa)
   {
     digitalWrite(rele, HIGH);
   }
@@ -200,6 +208,7 @@ void loop()
   }
 
   temporizador();
+  controleDeTemperatura();
 
   botao = read_LCD_buttons(); // CONTINUAR DAQUI...
 
