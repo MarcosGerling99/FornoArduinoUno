@@ -14,8 +14,6 @@ void temporizador()
         {
             t = false;
         }
-        bip();
-
         if (tela == 0)
         {
             DadosTelaPrincipal();
@@ -41,16 +39,16 @@ void temporizador()
         // Serial.println(Offset);
         // Serial.print("botao:");
         // Serial.println(botao);
-        Temperatura = ktc.readCelsius();
-        Serial.print("Temperatura: ");   //IMPRIME O TEXTO NO MONITOR SERIAL
-        Serial.print(ktc.readCelsius()); //IMPRIME NO MONITOR SERIAL A TEMPERATURA MEDIDA
-        Serial.println("*C");            //IMPRIME O TEXTO NO MONITOR SERIAL
+        //Temperatura = ktc.readCelsius();
+        //Serial.print("Temperatura: ");   //IMPRIME O TEXTO NO MONITOR SERIAL
+        //Serial.print(ktc.readCelsius()); //IMPRIME NO MONITOR SERIAL A TEMPERATURA MEDIDA
+        //Serial.println("*C");            //IMPRIME O TEXTO NO MONITOR SERIAL
 
-        Serial.print("SetpointTempo");
+        Serial.print("SetpointTempo: ");
         Serial.println(TempoAtual);
 
-        Serial.print("SetPointTemperatura");
-        Serial.println(SetPointTemperatura);
+        //Serial.print("SetPointTemperatura");
+        //Serial.println(SetPointTemperatura);
 
         tempoanterior = tempoatual;
     }

@@ -19,7 +19,7 @@ Entradas 2,3,11,12,13
 13 = branco do marrom;
 */
 float Temperatura = 0.0;
-unsigned int TempoAtual = 0;
+int TempoAtual = 0, MinutoAtual = 0;
 unsigned int SetPointTemperatura = 100.0;
 unsigned int SetPointTempo = 10;
 unsigned int tela = 0;
@@ -31,7 +31,7 @@ byte contabuzer = 0;
 byte contateladados = 0;
 byte botao = 0;
 bool t = false;
-bool ligabip = false;
+bool ligamemoria = false;
 bool Liga = false;
 bool MeoriaBotao = false;
 bool TemperaturaBaixa = false;
@@ -77,7 +77,7 @@ void setup()
   lcd.print("Controle forno");
   lcd.setCursor(0, 1);
   lcd.print("Autor: Marcos G.");
-  delay(4000);
+  delay(2000);
   ler();           // Chama a eeprom
   telaprincipal(); // Chama a tela principal
   Serial.begin(9600);

@@ -275,8 +275,8 @@ void Iconeumidade()
 void telaprincipal()
 {
   // Menu principal mostra todos os dados
-  //lcd.clear(); // Limpa o LCD
-  IconeTemperatura();
+  lcd.clear(); // Limpa o LCD
+  //IconeTemperatura();
   lcd.setCursor(13, 0);
   lcd.print("(C)");
   lcd.setCursor(13, 1);
@@ -301,7 +301,7 @@ void telaSetpointTemperatura()
   // Menu principal mostra todos os dados
   //lcd.clear(); // Limpa o LCD
   Iconeumidade();
-  lcd.setCursor(3, 0);
+  lcd.setCursor(5, 0);
   lcd.print("Temperatura");
   ChamaSetpointTemperatura();
   lcd.setCursor(10, 1);
@@ -325,30 +325,68 @@ void telaSetPointTempo()
 {
   //lcd.clear(); // Limpa o LCDks
   IconeCasa();
-  lcd.setCursor(3, 0);
+  lcd.setCursor(5, 0);
   lcd.print("Temporizador");
   ChamaSetpointTempo();
   lcd.setCursor(10, 1);
   lcd.print("min");
 }
 
-void DadosTelaPrincipal()
+void Minutos(unsigned posicaoInicial)
 {
-  lcd.setCursor(3, 0);
-  lcd.print(Temperatura);
-  lcd.setCursor(3, 1);
-  lcd.print(TempoAtual);
-  if (TempoAtual < 100)
+  lcd.setCursor(posicaoInicial, 1);
+  lcd.print(':');
+  lcd.setCursor(posicaoInicial + 1, 1);
+  lcd.print(MinutoAtual);
+  if (MinutoAtual < 10)
   {
-    lcd.setCursor(5, 1);
-    lcd.print(' ');
-  }
-  if (TempoAtual < 10)
-  {
-    lcd.setCursor(4, 1);
     lcd.print(' ');
   }
 }
+
+void DadosTelaPrincipal()
+{
+  lcd.setCursor(0, 0);
+  lcd.print(Temperatura);
+  unsigned int tempo = TempoAtual;
+  if (TempoAtual > 0)
+  {
+   tempo = TempoAtual - 1;
+  }
+  if (tempo >= 100)
+  {
+    lcd.setCursor(0, 1);
+    lcd.print(tempo);
+    Minutos(3);
+    Serial.println("Tempo atual >= 100");
+  }
+  else if (tempo < 100 && tempo >= 10)
+  {
+    lcd.setCursor(0, 1);
+    lcd.print("0");
+    lcd.setCursor(1, 1);
+    lcd.print(tempo);
+    Minutos(3);
+    Serial.println("Tempo atual < 100");
+  }
+  else if (tempo < 10 && tempo > 0)
+  {
+    lcd.setCursor(0, 1);
+    lcd.print("00");
+    lcd.setCursor(2, 1);
+    lcd.print(tempo);
+    Minutos(3);
+    Serial.println("Tempo atual < 10");
+  }
+  else if (tempo == 0)
+  {
+    lcd.setCursor(0, 1);
+    lcd.print("000");
+    Minutos(3);
+    Serial.println("Tempo atual == 0");
+  }
+}
+
 void AjustesPot()
 {
   lcd.setCursor(9, 0);
