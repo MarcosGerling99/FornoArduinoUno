@@ -3,11 +3,12 @@ void FuncaoTimerForno()
 {
     if (!ligamemoria && Liga)
     {
-        MinutoAtual = 59;
+        MinutoAtual = 60;
+        TempoAtual = TempoAtual - 1;
         ligamemoria = true;
     }
 
-    if (Liga && TempoAtual > 1 && MinutoAtual > 0)
+    if (Liga)
     {
         if (MinutoAtual > 0)
         {
@@ -15,22 +16,17 @@ void FuncaoTimerForno()
         }
         else
         {
-            if (TempoAtual > 1)
+            if (MinutoAtual == 0 && TempoAtual == 0)
+            {
+                Liga = false;
+                bip();
+                ligamemoria = false;
+            }
+            else
             {
                 TempoAtual--;
+                MinutoAtual = 60;
             }
-            MinutoAtual = 59;
         }
-    }
-    else
-    {
-        if (Liga)
-        {
-            bip();
-        }
-        Liga = false;
-        TempoAtual = 0;
-        MinutoAtual = 0;
-        ligamemoria = false;
     }
 }

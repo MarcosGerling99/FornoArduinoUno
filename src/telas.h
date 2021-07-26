@@ -348,37 +348,33 @@ void DadosTelaPrincipal()
 {
   lcd.setCursor(0, 0);
   lcd.print(Temperatura);
-  unsigned int tempo = TempoAtual;
-  if (TempoAtual > 0)
-  {
-   tempo = TempoAtual - 1;
-  }
-  if (tempo >= 100)
+
+  if (TempoAtual >= 100)
   {
     lcd.setCursor(0, 1);
-    lcd.print(tempo);
+    lcd.print(TempoAtual);
     Minutos(3);
     Serial.println("Tempo atual >= 100");
   }
-  else if (tempo < 100 && tempo >= 10)
+  else if (TempoAtual < 100 && TempoAtual >= 10)
   {
     lcd.setCursor(0, 1);
     lcd.print("0");
     lcd.setCursor(1, 1);
-    lcd.print(tempo);
+    lcd.print(TempoAtual);
     Minutos(3);
     Serial.println("Tempo atual < 100");
   }
-  else if (tempo < 10 && tempo > 0)
+  else if (TempoAtual < 10 && TempoAtual > 0)
   {
     lcd.setCursor(0, 1);
     lcd.print("00");
     lcd.setCursor(2, 1);
-    lcd.print(tempo);
+    lcd.print(TempoAtual);
     Minutos(3);
     Serial.println("Tempo atual < 10");
   }
-  else if (tempo == 0)
+  else if (TempoAtual == 0)
   {
     lcd.setCursor(0, 1);
     lcd.print("000");
