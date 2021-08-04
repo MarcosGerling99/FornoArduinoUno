@@ -32,7 +32,7 @@ void temporizador()
             }
         }
 
-        if ((SetPointTempo > TempoAtual + 2) || (SetPointTempo < TempoAtual -2))
+        if ((SetPointTempo > UltimoSetPoint + 1) || (SetPointTempo < UltimoSetPoint -1))
         {
             TempoAlterar++;
             
@@ -40,6 +40,7 @@ void temporizador()
 
         if (TempoAlterar == SetPointTempoAlterar)
         {
+            UltimoSetPoint = SetPointTempo;
             TempoAtual = SetPointTempo;
             TempoAlterar = 0;
 

@@ -20,9 +20,10 @@ Entradas 2,3,11,12,13
 */
 float Temperatura = 0.0;
 int TempoAtual = 0, MinutoAtual = 0;
+int UltimoSetPoint = 0;
 unsigned int SetPointTempoAlterar = 4, TempoAlterar = 0;
 unsigned int SetPointTemperatura = 100.0;
-unsigned int SetPointTempo = 10;
+unsigned int SetPointTempo = 0;
 unsigned int tela = 0;
 unsigned int SetPointTempoParametros = 20;
 unsigned int tempoParametros = 0;
@@ -184,6 +185,7 @@ void loop()
       {
         Liga = true;
         TempoAtual = SetPointTempo;
+        UltimoSetPoint = SetPointTempo;
         delay(500);
       }
       else
