@@ -20,6 +20,7 @@ Entradas 2,3,11,12,13
 */
 float Temperatura = 0.0;
 int TempoAtual = 0, MinutoAtual = 0;
+unsigned int SetPointTempoAlterar = 4, TempoAlterar = 0;
 unsigned int SetPointTemperatura = 100.0;
 unsigned int SetPointTempo = 10;
 unsigned int tela = 0;

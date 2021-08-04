@@ -5,7 +5,7 @@ void temporizador()
     if (tempoatual > tempoanterior + 1000)
     {
         FuncaoTimerForno();
-        
+
         if (!t)
         {
             t = true;
@@ -31,6 +31,19 @@ void temporizador()
                 telaprincipal();
             }
         }
+
+        if ((SetPointTempo > TempoAtual + 2) || (SetPointTempo < TempoAtual -2))
+        {
+            TempoAlterar++;
+            
+        }
+
+        if (TempoAlterar == SetPointTempoAlterar)
+        {
+            TempoAtual = SetPointTempo;
+            TempoAlterar = 0;
+
+        }
         //Serial.print("tela:");
         //Serial.println(tela);
         //Serial.print("SetPoint:");
@@ -44,8 +57,8 @@ void temporizador()
         //Serial.print(ktc.readCelsius()); //IMPRIME NO MONITOR SERIAL A TEMPERATURA MEDIDA
         //Serial.println("*C");            //IMPRIME O TEXTO NO MONITOR SERIAL
 
-        Serial.print("SetpointTempo: ");
-        Serial.println(TempoAtual);
+        Serial.print("TempoAlterar: ");
+        Serial.println(TempoAlterar);
 
         //Serial.print("SetPointTemperatura");
         //Serial.println(SetPointTemperatura);
