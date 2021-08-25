@@ -354,7 +354,6 @@ void DadosTelaPrincipal()
     lcd.setCursor(0, 1);
     lcd.print(TempoAtual);
     Minutos(3);
-    Serial.println("Tempo atual >= 100");
   }
   else if (TempoAtual < 100 && TempoAtual >= 10)
   {
@@ -363,7 +362,6 @@ void DadosTelaPrincipal()
     lcd.setCursor(1, 1);
     lcd.print(TempoAtual);
     Minutos(3);
-    Serial.println("Tempo atual < 100");
   }
   else if (TempoAtual < 10 && TempoAtual > 0)
   {
@@ -372,14 +370,12 @@ void DadosTelaPrincipal()
     lcd.setCursor(2, 1);
     lcd.print(TempoAtual);
     Minutos(3);
-    Serial.println("Tempo atual < 10");
   }
   else if (TempoAtual == 0)
   {
     lcd.setCursor(0, 1);
     lcd.print("000");
     Minutos(3);
-    Serial.println("Tempo atual == 0");
   }
 }
 

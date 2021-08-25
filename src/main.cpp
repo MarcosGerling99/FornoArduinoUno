@@ -27,7 +27,7 @@ unsigned int SetPointTempo = 0;
 unsigned int tela = 0;
 unsigned int SetPointTempoParametros = 20;
 unsigned int tempoParametros = 0;
-unsigned Histerese = 1;
+unsigned Histerese = 10, ContadorSobe = 0, incremento = 0;
 unsigned long tempoanterior = 0;
 byte contabuzer = 0;
 byte contateladados = 0;

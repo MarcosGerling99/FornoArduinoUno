@@ -5,8 +5,33 @@ void controleDeTemperatura()
     {
         TemperaturaBaixa = true;
     }
-    if (Temperatura > (SetPointTemperatura + Histerese))
+    else if (Temperatura > (SetPointTemperatura - Histerese + 1))
     {
-        TemperaturaBaixa = false;
+        if (Temperatura < SetPointTemperatura - 5)
+        {
+            incremento = 120;
+        }
+        else
+        {
+            incremento = 60;
+        }
+
+        if (Temperatura < SetPointTemperatura - 2)
+        {
+            if (ContadorSobe < incremento)
+            {
+                ContadorSobe++;
+            }
+            else
+            {
+                ContadorSobe = 0;
+                TemperaturaBaixa = !TemperaturaBaixa;
+            }
+        }
+        else
+        {
+            TemperaturaBaixa = false;
+            ContadorSobe = 0;
+        }
     }
 }

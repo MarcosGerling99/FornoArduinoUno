@@ -58,11 +58,11 @@ void temporizador()
         //Serial.print(ktc.readCelsius()); //IMPRIME NO MONITOR SERIAL A TEMPERATURA MEDIDA
         //Serial.println("*C");            //IMPRIME O TEXTO NO MONITOR SERIAL
 
-        Serial.print("TempoAlterar: ");
-        Serial.println(TempoAlterar);
+        Serial.print("Incremento: ");
+        Serial.println(incremento);
 
-        //Serial.print("SetPointTemperatura");
-        //Serial.println(SetPointTemperatura);
+        Serial.print("ContadorSobe");
+        Serial.println(ContadorSobe);
 
         tempoanterior = tempoatual;
     }
